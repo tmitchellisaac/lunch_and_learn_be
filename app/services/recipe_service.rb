@@ -17,9 +17,4 @@ class RecipeService
     get_url("?q=#{country}")[:hits]
   end
 
-  # def top_rated_movies
-  #   get_url("3/movie/top_rated")[:results]
-  # end
-
-
 end
