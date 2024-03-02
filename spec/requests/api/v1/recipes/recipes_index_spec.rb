@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Recipes API" do
-  it "sends a list of recipes" do
+  it "sends a list of recipes if country param is provided" do
     # create_list(:recipe, 3)
     q_thailand = File.read("spec/fixtures/q_thailand.json")
     stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=499d33a43abe080e2f3e32e70e6cf6e7&q=thailand&type=public").
