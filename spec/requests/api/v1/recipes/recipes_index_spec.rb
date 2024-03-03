@@ -2,18 +2,19 @@ require 'rails_helper'
 
 describe "Recipes API" do
   it "sends a list of recipes if country param is provided" do
-    # create_list(:recipe, 3)
+
     q_thailand = File.read("spec/fixtures/q_thailand.json")
     stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=499d33a43abe080e2f3e32e70e6cf6e7&q=thailand&type=public").
-    with(
-      headers: {
-     'Accept'=>'*/*',
-     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-     'User-Agent'=>'Faraday v2.9.0'
-      }).
-    to_return(status: 200, body: q_thailand, headers: {})
+      with(
+        headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v2.9.0'
+        }).
+      to_return(status: 200, body: q_thailand, headers: {})
 
     get "/api/v1/recipes?country=thailand", headers: {"CONTENT_TYPE" => "application/json", "Accept": "application/json"}
+
     json_response = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
@@ -35,24 +36,23 @@ describe "Recipes API" do
 
     one_country = File.read("spec/fixtures/one_country.json")
     stub_request(:get, "https://restcountries.com/v3.1/all?fields=name").
-    with(
-      headers: {
-     'Accept'=>'*/*',
-     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-     'User-Agent'=>'Faraday v2.9.0'
-      }).
-    to_return(status: 200, body: one_country, headers: {})
+      with(
+        headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v2.9.0'
+        }).
+      to_return(status: 200, body: one_country, headers: {})
 
     ethiopia_recipes = File.read("spec/fixtures/ethiopia_recipes.json")
     stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=499d33a43abe080e2f3e32e70e6cf6e7&q=Ethiopia&type=public").
-    with(
-      headers: {
-     'Accept'=>'*/*',
-     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-     'User-Agent'=>'Faraday v2.9.0'
-      }).
-    to_return(status: 200, body: ethiopia_recipes , headers: {})
-
+      with(
+        headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v2.9.0'
+        }).
+      to_return(status: 200, body: ethiopia_recipes , headers: {})
 
     get "/api/v1/recipes", headers: {"CONTENT_TYPE" => "application/json", "Accept": "application/json"}
     json_response = JSON.parse(response.body, symbolize_names: true)
@@ -77,18 +77,17 @@ describe "Recipes API" do
 
     empty_recipe_query = File.read("spec/fixtures/empty_recipe_query.json")
     stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=499d33a43abe080e2f3e32e70e6cf6e7&q=pitcairn%20islands&type=public").
-    with(
-      headers: {
-     'Accept'=>'*/*',
-     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-     'User-Agent'=>'Faraday v2.9.0'
-      }).
-    to_return(status: 200, body: empty_recipe_query, headers: {})    
+      with(
+        headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v2.9.0'
+        }).
+      to_return(status: 200, body: empty_recipe_query, headers: {})    
 
     get "/api/v1/recipes?country=pitcairn%20islands", headers: {"CONTENT_TYPE" => "application/json", "Accept": "application/json"}
 
     json_response = JSON.parse(response.body, symbolize_names: true)
     expect(json_response[:data]).to eq([])
   end
-
 end
