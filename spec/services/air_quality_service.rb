@@ -4,7 +4,7 @@ describe "AirQualityService" do
   it "gets Air quality data for a set of coordinates" do
 
     india_air_quality = File.read("spec/fixtures/india_20_77_air_quality.json")
-    stub_request(:get, "http://api.openweathermap.org/data/2.5/air_pollution?appid=a5ab3ef231a34196de232f4cd8816d96&lat=20&lon=77").
+    stub_request(:get, "http://api.openweathermap.org/data/2.5/air_pollution?appid=#{Rails.application.credentials.OPEN_WEATHER[:KEY]}&lat=20&lon=77").
       with(
         headers: {
       'Accept'=>'*/*',
