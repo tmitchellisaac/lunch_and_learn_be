@@ -1,11 +1,10 @@
 class AirQualityFacade
 
-  def initialize(params)
-    @params = params
-    @country = params[:country]
+  def initialize(country)
+    @country = country
   end
 
-  def weather_service
+  def air_quality_service
     AirQualityService.new
   end
 
@@ -14,7 +13,6 @@ class AirQualityFacade
   end
 
   def big_air_quality
-    get_coordinates # [77, 99]
     AirQuality.new(air_quality(get_coordinates))
   end
 
@@ -22,9 +20,8 @@ class AirQualityFacade
     country_service.get_coordinates(@country)
   end
 
-
   def air_quality(coordinates)
-    weather_service.get_air_quality(coordinates)
+    air_quality_service.get_air_quality(coordinates)
   end
 
 end
