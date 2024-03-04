@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Weather Spec" do
+describe "Air Quality Request Spec" do
   it "gets air quality info for valid country" do
 
     india_coordinates = File.read("spec/fixtures/india_coordinates.json")
@@ -70,5 +70,4 @@ describe "Weather Spec" do
       expect(json_response[:data][:attributes][:datetime]).to eq(1709573002)
       expect(json_response[:data][:attributes][:readable_aqi]).to eq("Fair")
     end
-
   end
