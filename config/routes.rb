@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
-        resources :learning_resources
-        resources :recipes
+        post "/sessions", to: "sessions#login"
+        resources :users, only: :create
+        resources :learning_resources, only: :index
+        resources :recipes, only: :index
       end
     end
   end
