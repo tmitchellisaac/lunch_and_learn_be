@@ -18,6 +18,4 @@ class CountryService
     get_url("name/#{country}?fullText=true&fields=name,latlng").first[:latlng]
   end
 
-
-
 end
