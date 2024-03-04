@@ -14,6 +14,10 @@ class CountryService
     result = get_url("all?fields=name")
   end
 
+  def get_coordinates(country)
+    get_url("name/#{country}?fullText=true&fields=name,latlng").first[:latlng]
+  end
+
 
 
 end
