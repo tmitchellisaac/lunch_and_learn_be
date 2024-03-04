@@ -1,0 +1,26 @@
+[
+  {
+      "name": {
+          "common": "India",
+          "official": "Republic of India",
+          "nativeName": {
+              "eng": {
+                  "official": "Republic of India",
+                  "common": "India"
+              },
+              "hin": {
+                  "official": "भारत गणराज्य",
+                  "common": "भारत"
+              },
+              "tam": {
+                  "official": "இந்தியக் குடியரசு",
+                  "common": "இந்தியா"
+              }
+          }
+      },
+      "latlng": [
+          20.0,
+          77.0
+      ]
+  }
+]
