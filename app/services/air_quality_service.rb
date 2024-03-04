@@ -15,9 +15,4 @@ class AirQualityService
     get_url("?lat=#{latlng[0]}&lon=#{latlng[1]}")[:list].first
   end
 
-  # def get_learning_image(country)
-  #   get_url("?query=#{country}")[:results]
-  # end
-
-
 end
