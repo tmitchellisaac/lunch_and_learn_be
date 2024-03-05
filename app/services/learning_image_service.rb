@@ -5,7 +5,6 @@ class LearningImageService
     faraday.params["client_id"] = Rails.application.credentials.UNSPLASH[:ACCESS_KEY]
     faraday.params["page"] = "1"
     faraday.params["page_size"] = "10"
-    
     end
   end
 
@@ -14,9 +13,8 @@ class LearningImageService
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def get_learning_image(country)
+  def get_learning_images(country)
     get_url("?query=#{country}")[:results]
   end
-
 
 end
