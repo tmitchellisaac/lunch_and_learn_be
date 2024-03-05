@@ -18,9 +18,4 @@ class LearningVideoService
     get_url("?q=#{country}")
   end
 
-  # def get_recipes(country)
-  #   get_url("?q=#{country}")[:hits]
-  # end
-
-
 end
