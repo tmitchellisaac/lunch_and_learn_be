@@ -8,8 +8,6 @@ class Api::V1::UsersController < ApplicationController
       )
       if user.save
         render json: UserSerializer.new(user)
-      else
-        render json: ErrorSerializer.new(Error.new("invalid credentials, please try again", 400))
       end
     elsif params[:password] != params[:password_confirmation]
       render json: ErrorSerializer.new(Error.new("invalid credentials, please try again", 400)), status: 400

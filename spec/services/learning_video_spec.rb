@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Learning Video Service" do
   it "gets a video based on a country --> #get_learning_video" do
     laos_videos = File.read("spec/fixtures/learning_laos_video.json")
-    stub_request(:get, "https://youtube.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=AIzaSyDfLq4kh269CncBEFVi4w7ozG362tQMcQ0&maxResults=1&part=snippet&q=Laos").
+    stub_request(:get, "https://youtube.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=#{Rails.application.credentials.YOUTUBE[:KEY]}&maxResults=1&part=snippet&q=Laos").
       with(
         headers: {
       'Accept'=>'*/*',

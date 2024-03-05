@@ -67,4 +67,17 @@ describe "User Registration" do
     expect(json_response[:error][:status_code]).to eq(400)
   end
 
+  it "returns an error message if missing credential are sent" do
+
+    user_data = { 
+      "password": "treats4lyf",
+      "password_confirmation": "treats4lyf"
+    }
+
+    post "/api/v1/users", headers: {"CONTENT_TYPE" => "application/json"}, params: JSON.generate(user_data)
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    expect(json_response).to eq({:error=>{:message=>"email is not unique", :status_code=>400}})
+
+  end
 end

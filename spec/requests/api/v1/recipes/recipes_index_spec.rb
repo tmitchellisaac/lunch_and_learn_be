@@ -4,7 +4,7 @@ describe "Recipes API" do
   it "sends a list of recipes if country param is provided" do
 
     q_thailand = File.read("spec/fixtures/q_thailand.json")
-    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=499d33a43abe080e2f3e32e70e6cf6e7&q=thailand&type=public").
+    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=#{Rails.application.credentials.EDAMAM[:EDAMAM_KEY]}&q=thailand&type=public").
       with(
         headers: {
       'Accept'=>'*/*',
@@ -45,7 +45,7 @@ describe "Recipes API" do
       to_return(status: 200, body: one_country, headers: {})
 
     ethiopia_recipes = File.read("spec/fixtures/ethiopia_recipes.json")
-    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=499d33a43abe080e2f3e32e70e6cf6e7&q=Ethiopia&type=public").
+    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=#{Rails.application.credentials.EDAMAM[:EDAMAM_KEY]}&q=Ethiopia&type=public").
       with(
         headers: {
       'Accept'=>'*/*',
@@ -76,7 +76,7 @@ describe "Recipes API" do
   it "returns a formatted empty data array if no recipes are found for query " do
 
     empty_recipe_query = File.read("spec/fixtures/empty_recipe_query.json")
-    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=499d33a43abe080e2f3e32e70e6cf6e7&q=pitcairn%20islands&type=public").
+    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=1c407fd5&app_key=#{Rails.application.credentials.EDAMAM[:EDAMAM_KEY]}&q=pitcairn%20islands&type=public").
       with(
         headers: {
       'Accept'=>'*/*',

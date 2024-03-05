@@ -18,8 +18,6 @@ class Api::V1::FavoritesController < ApplicationController
         render json: {
           success: "Favorite added successfully"
         }, status: 201
-      else
-      render json: ErrorSerializer.new(Error.new("something went wrong", 400))
       end
     else
       render json: ErrorSerializer.new(Error.new("incorrect API key", 401)), status: 401
@@ -34,9 +32,6 @@ class Api::V1::FavoritesController < ApplicationController
       render json: {
         success: "Favorite successfully deleted"
       }, status: 200
-      # require 'pry'; binding.pry
-     else
-      render json: ErrorSerializer.new(Error.new("something went wrong", 400)), status: 400
      end
     else
       render json: ErrorSerializer.new(Error.new("incorrect API key", 401)), status: 401

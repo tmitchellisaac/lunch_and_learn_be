@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Learning Resources API" do
   it "sends learning resources if country param is provided" do
     learning_video_laos = File.read("spec/fixtures/learning_laos_video.json")
-    stub_request(:get, "https://youtube.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=AIzaSyDfLq4kh269CncBEFVi4w7ozG362tQMcQ0&maxResults=1&part=snippet&q=laos").
+    stub_request(:get, "https://youtube.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=#{Rails.application.credentials.YOUTUBE[:KEY]}&maxResults=1&part=snippet&q=laos").
          with(
            headers: {
           'Accept'=>'*/*',
@@ -13,7 +13,7 @@ describe "Learning Resources API" do
          to_return(status: 200, body: learning_video_laos, headers: {})
 
     learning_image_laos = File.read("spec/fixtures/laos_images.json")
-    stub_request(:get, "https://api.unsplash.com/search/photos?client_id=zxQC-lSD5aTFnUYzBIn2q-UkyzNa9rTk94Cgc-TVsfI&page=1&page_size=10&query=laos").
+    stub_request(:get, "https://api.unsplash.com/search/photos?client_id=#{Rails.application.credentials.UNSPLASH[:ACCESS_KEY]}&page=1&page_size=10&query=laos").
     with(
       headers: {
     'Accept'=>'*/*',
@@ -39,7 +39,7 @@ describe "Learning Resources API" do
 
   it "has no response from images or videos" do
     no_learning_video_laos = File.read("spec/fixtures/no_data_videos.json")
-    stub_request(:get, "https://youtube.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=AIzaSyDfLq4kh269CncBEFVi4w7ozG362tQMcQ0&maxResults=1&part=snippet&q=nameofcountry").
+    stub_request(:get, "https://youtube.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=#{Rails.application.credentials.YOUTUBE[:KEY]}&maxResults=1&part=snippet&q=nameofcountry").
          with(
            headers: {
           'Accept'=>'*/*',
@@ -49,7 +49,7 @@ describe "Learning Resources API" do
          to_return(status: 200, body: no_learning_video_laos, headers: {})
 
     no_learning_image_laos = File.read("spec/fixtures/no_data_images.json")
-    stub_request(:get, "https://api.unsplash.com/search/photos?client_id=zxQC-lSD5aTFnUYzBIn2q-UkyzNa9rTk94Cgc-TVsfI&page=1&page_size=10&query=nameofcountry").
+    stub_request(:get, "https://api.unsplash.com/search/photos?client_id=#{Rails.application.credentials.UNSPLASH[:ACCESS_KEY]}&page=1&page_size=10&query=nameofcountry").
       with(
         headers: {
       'Accept'=>'*/*',

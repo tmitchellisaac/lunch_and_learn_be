@@ -29,10 +29,10 @@ class LearningFacade
 
   def learning_video
     video_hash= {}
-    r = video_service.get_learning_video(@country)[:items].first
-    if r
-      video_hash[:youtube_video_id] = r[:id][:videoId]
-      video_hash[:title] = r[:snippet][:title]
+    present = video_service.get_learning_video(@country)[:items].first
+    if present
+      video_hash[:youtube_video_id] = present[:id][:videoId]
+      video_hash[:title] = present[:snippet][:title]
       video_hash
     else
       {}
