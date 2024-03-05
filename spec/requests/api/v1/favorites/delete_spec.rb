@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe "Deletes a user's favorites" do
   before(:each) do
-    user_1 = User.create!(name: "Todd", email: "cheese@gmail.com", password: 'password1', api_key: "qwertyuioplkjhgfdsazxcvb")
-    favorite_1 = Favorite.create!(id: 1, user_id: user_1.id, country: 'thailand', recipe_link: "https://www.tastingtable.com/.....", recipe_title: "You're Telling Me A Crab Fried This Rice??")
-    favorite_2 = Favorite.create!(id: 2, user_id: user_1.id, country: 'greece', recipe_link: "https://www.tastingtable.com/.....", recipe_title: "Spanikopita")
-    favorite_3 = Favorite.create!(id: 3, user_id: user_1.id, country: 'india', recipe_link: "https://www.tastingtable.com/.....", recipe_title: "Tandoori Chicken")
+    @user_1 = User.create!(name: "Todd", email: "cheese@gmail.com", password: 'password1', api_key: "qwertyuioplkjhgfdsazxcvb")
+    @favorite_1 = Favorite.create!(id: 1, user_id: @user_1.id, country: 'thailand', recipe_link: "https://www.tastingtable.com/.....", recipe_title: "You're Telling Me A Crab Fried This Rice??")
+    @favorite_2 = Favorite.create!(id: 2, user_id: @user_1.id, country: 'greece', recipe_link: "https://www.tastingtable.com/.....", recipe_title: "Spanikopita")
+    @favorite_3 = Favorite.create!(id: 3, user_id: @user_1.id, country: 'india', recipe_link: "https://www.tastingtable.com/.....", recipe_title: "Tandoori Chicken")
   end
 
   it "deletes a favorite for a given user with correct api key" do
