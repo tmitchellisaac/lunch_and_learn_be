@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "CountryService" do
-  it "gets coordinates for a country" do
+  it "gets coordinates for a country --> #get_coordinates" do
     india_coordinates = File.read("spec/fixtures/india_coordinates.json")
     stub_request(:get, "https://restcountries.com/v3.1/name/India?fields=name,latlng&fullText=true").
       with(
@@ -15,11 +15,9 @@ describe "CountryService" do
     country_service = CountryService.new
     response = country_service.get_coordinates('India')
     expect(response).to eq([20.0, 77.0])
-
   end
 
-  it "gets all countries (to be then chosen randomly from)" do
-
+  it "gets all countries (to be then chosen randomly from) --> #get_country" do
     all_countries = File.read("spec/fixtures/all_countries_name.json")
     stub_request(:get, "https://restcountries.com/v3.1/all?fields=name").
     with(
