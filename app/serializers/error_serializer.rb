@@ -1,4 +1,7 @@
 class ErrorSerializer
+
+  attr_reader :error
+
   def initialize(error_object)
     @error = error_object
   end
