@@ -5,7 +5,7 @@ describe "AirQuality Facade" do
     @aq_facade = AirQualityFacade.new("India")
   end
 
-  it "gets coordinates for a country (official name)" do
+  it "gets coordinates for a country (official name) --> #get_coordinates" do
     india_coordinates = File.read("spec/fixtures/india_coordinates.json")
     stub_request(:get, "https://restcountries.com/v3.1/name/India?fields=name,latlng&fullText=true").
       with(
@@ -19,7 +19,7 @@ describe "AirQuality Facade" do
     expect(@aq_facade.get_coordinates).to eq([20.0, 77.0])
   end
 
-  it "gets Air quality data for a set of coordinates" do
+  it "gets Air quality data for a set of coordinates --> #air_quality" do
     india_air_quality = File.read("spec/fixtures/india_20_77_air_quality.json")
     stub_request(:get, "http://api.openweathermap.org/data/2.5/air_pollution?appid=#{Rails.application.credentials.OPEN_WEATHER[:KEY]}&lat=20.0&lon=77.0").
       with(
@@ -37,7 +37,7 @@ describe "AirQuality Facade" do
     expect(result[:dt]).to eq(1709570004)
   end
 
-  it "combines the air_quality and get_coordinates method to produce a poro" do
+  it "combines the air_quality and get_coordinates method to produce a PORO --> #big_air_quality" do
     india_coordinates = File.read("spec/fixtures/india_coordinates.json")
     stub_request(:get, "https://restcountries.com/v3.1/name/India?fields=name,latlng&fullText=true").
       with(
@@ -66,11 +66,11 @@ describe "AirQuality Facade" do
     expect(poro.readable_aqi).to eq("Fair")
   end
 
-  it "creates an AirQuality Service" do
+  it "creates an AirQuality Service --> #air_quality_service" do
     expect(@aq_facade.air_quality_service).to be_a(AirQualityService)
   end
 
-  it "creates an Country Service" do
+  it "creates an Country Service --> #country_service" do
     expect(@aq_facade.country_service).to be_a(CountryService)
   end
 end
