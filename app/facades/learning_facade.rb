@@ -13,13 +13,12 @@ class LearningFacade
   end
 
   def learning
-    c = LearningResource.new([learning_video,learning_image, @country])
-
+    LearningResource.new([learning_video,learning_images, @country])
   end
 
-  def learning_image
+  def learning_images
     image_array = []
-    image_service.get_learning_image(@country).map do |image_data|
+    image_service.get_learning_images(@country).map do |image_data|
       hash = {}
       hash[:alt_tag] = image_data[:alt_description]
       hash[:url] = image_data[:urls][:full]
