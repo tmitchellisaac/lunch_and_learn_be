@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
+        delete "/favorites", to: "favorites#destroy"
+        resources :favorites, only: [:create, :index]
         resources :air_quality, only: :index
         post "/sessions", to: "sessions#login"
         resources :users, only: :create
